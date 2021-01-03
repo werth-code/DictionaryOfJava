@@ -23,7 +23,6 @@ public class HashMaps {
             }
         }
 
-
         //// TODO: 1/2/21 Modern, Functional way
         String[] arr = {"this", "is", "a", "string", "is", "a"};
 
