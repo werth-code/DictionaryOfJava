@@ -2,7 +2,6 @@ package com.werth;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -33,6 +32,24 @@ public class HashMaps {
                 ));
 
         System.out.println(map);
+        System.out.println(" --- --- --- ");
         System.out.println(newMap);
+
+        System.out.println(" --- --- --- ");
+
+        // TODO: 1/3/21 Iterating Over A Map
+
+        //ForEach
+        map.forEach( (k, v) -> System.out.println("Key: " + k + " | Value: " + v));
+
+        System.out.println(" --- --- --- ");
+
+        //Enhanced For Loop
+        for(Map.Entry<String, Long> val : map.entrySet()) {
+            System.out.println("Key: " + val.getKey() + " | Value: " + val.getValue());
+        }
+
+
+
     }
 }
