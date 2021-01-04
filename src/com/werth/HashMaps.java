@@ -1,9 +1,8 @@
 package com.werth;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class HashMaps {
     public static void main(String[] args) {
@@ -22,7 +21,7 @@ public class HashMaps {
             }
         }
 
-        //// TODO: 1/2/21 Modern, Functional way
+        //// TODO: 1/2/21 Modern, Functional way LONG
         String[] arr = {"this", "is", "a", "string", "is", "a"};
 
         Map<String, Long> map = Arrays.stream(arr) //Note: this way requires using a Long.
@@ -36,6 +35,22 @@ public class HashMaps {
         System.out.println(newMap);
 
         System.out.println(" --- --- --- ");
+
+        // TODO: 1/4/21 Another Way INTEGER
+
+        String[] arr2 = {"this", "is", "a", "string", "is", "a", "nice", "very", "nice", "nice"};
+
+        Comparator<Integer> comp = (n1, n2) -> n1 - n2;
+
+        Map<String, Integer> anotherMap = Arrays.stream(arr2)
+                .collect(Collectors.toMap(
+                        str -> str, //first value
+                        num -> 1,   //sec value
+                        Integer::sum
+                ));
+
+        System.out.println(anotherMap);
+
 
         // TODO: 1/3/21 Iterating Over A Map
 

@@ -2,6 +2,8 @@ package com.werth;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 public class Streams {
     public static void main(String[] args) {
@@ -37,5 +39,23 @@ public class Streams {
                 .sorted(compareLength)
                 .mapToInt(String::length)
                 .forEach(System.out::println);
+
+        //// TODO: 1/4/21
+
+        Optional<String> longword = Arrays.stream(strs)
+                .max(Comparator.comparingInt(String::length));
+
+        System.out.println(longword.get());
+        //You can return an optional with .get();
+
+
+        // TODO: 1/4/21
+        System.out.println(Stream.of(1,2,3,4,5,6)
+              .filter(e -> e > 2)
+                .findFirst()
+                .orElse(null));
+
     }
+
+
 }
