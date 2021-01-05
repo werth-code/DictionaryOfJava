@@ -2,6 +2,7 @@ package com.werth;
 
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 
@@ -20,7 +21,7 @@ public class Streams {
                 ));
         System.out.println(map);
 
-        // TODO: 1/4/21
+        // TODO: 1/4/21 Sorting Using A Comparator
 
         List<String> strings = new ArrayList<>();
         strings.add("1234567");
@@ -34,32 +35,101 @@ public class Streams {
                 .sorted(compareLength)
                 .forEach(System.out::println);
 
-        // TODO: 1/4/21
+        // .... OR ....
+
+        strings.stream()
+                .sorted(Comparator.comparing(String::length))
+                .forEach(System.out::println);
+
+        // TODO: 1/4/21 Map From String To Int MapToInt(String::length)
+        
         String[] strs = {"Hello", "I", "Am", "String", "Which", "String", "is", "longest"};
+        //String[] noStrs = {};
+
         Arrays.stream(strs)
                 .sorted(compareLength)
                 .mapToInt(String::length)
                 .forEach(System.out::println);
 
-        //// TODO: 1/4/21
+        //// TODO: 1/4/21 Optionals using .get() to retrieve value - .orElse("Do something else!")
 
-        Optional<String> longword = Arrays.stream(strs)
-                .max(Comparator.comparingInt(String::length));
+        System.out.println(Optional.of(Arrays.stream(strs)
+                .max(Comparator.comparingInt(String::length))
+                .orElse("Not Found"))
+                .get());
 
-        System.out.println(longword.get());
-        //You can return an optional with .get();
 
-
-        // TODO: 1/4/21
-        System.out.println(Stream.of(1,2,3,4,5,6)
+        // TODO: 1/4/21 ifPresent() do something.. / findFirst() instance of something..
+        Stream.of(1,2,3,4,5,6)
               .filter(e -> e > 2)
                 .findFirst()
-                .orElse(null));
+                .ifPresent(System.out::println); //If present will resolve our stream if the item is present!
+
+
+        System.out.println(" --- --- --- ");
+
+        // TODO: 1/5/21 .distinct() - limits to only one instance of the element - Strings, Integers etc.
+
+        Integer[] integers = {1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6};
+
+        Stream.of(integers)
+                .distinct()
+                .forEach(System.out::println);
+
+        String[] strings1 = {"hi", "hi", "hello", "hello", "you", "you", "look", "nice"};
+
+        Stream.of(strings1)
+                .distinct()
+                .forEach(System.out::println);
+
+
+        System.out.println(" --- --- --- ");
+
+        // TODO: 1/5/21 using .rangeClosed you can gain access to element at i
+
+        List<String> strings2 = Arrays.asList(strings1);
+
+        IntStream.rangeClosed(1, strings2.size())
+                .mapToObj(i -> String.format("%d. %s", i, strings2.get(i - 1)))
+                .forEach(System.out::println);
+
+
+        System.out.println(" --- --- --- ");
+        // TODO: 1/5/21 Stepping through with Streams, using i
+
+        List<String> str5000 = new ArrayList<>();
+        str5000.add("andy");
+        str5000.add("zach");
+        str5000.add("barb");
+        str5000.add("ying");
+        str5000.add("candice");
+        str5000.add("xi");
+
+        IntStream.iterate(0, i -> i + 1)
+                .mapToObj(i -> String.format("%d. %s", i + 1, str5000.get(i)))
+                .limit(str5000.size())
+                .forEach(System.out::println);
+
+        System.out.println(" --- --- --- ");
+        // TODO: 1/5/21 .peek() great for debugging.
+
+        str5000.stream()
+                .peek(name -> System.out.println("=======>" + name))
+                .filter(letter -> letter.startsWith("b"))
+                .forEach(System.out::println);
+
+
+
+        System.out.println(" --- --- --- ");
+        // Follows Open Closed Principle - you are able to keep your variables encapsulated by passing a function -
+        // instead of modifying your existing code base.
+
+        // TODO: 1/5/21 Higher Order Functions - functions that take other functions
+
 
 
 
 
     }
-
 
 }
