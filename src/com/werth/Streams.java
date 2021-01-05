@@ -1,6 +1,7 @@
 package com.werth;
 
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -126,10 +127,32 @@ public class Streams {
 
         // TODO: 1/5/21 Higher Order Functions - functions that take other functions
 
+        ArrayList<XTree> xForest = XTreeActions.createSetOfTrees(1, 1, "Evergreen", true);
+        xForest.add(new XTree(1, "Apple", false));
+        xForest.add(new XTree(1, "Pear", true));
+        xForest.add(new XTree(1, "Cherry", false));
+        xForest.add(new XTree(1, "Chestnut", false));
+        xForest.add(new XTree(1, "Cherry", true));
+        xForest.add(new XTree(1, "Maple", false));
+        xForest.add(new XTree(1, "Dogwood", true));
 
 
+        Predicate<XTree> checkCherry = xTree -> xTree.getTreeType().equals("Cherry");
+        Predicate<XTree> checkHealth = xTree -> xTree.getTreeInGoodHealth().equals(true);
 
+        XTree cherry = xForest.stream()
+                .filter(checkCherry.and(checkHealth))
+                .findFirst()
+                .orElseThrow(NullPointerException::new);
 
+        functionTest(cherry, checkCherry);
+        functionTest(cherry, checkCherry.and(checkHealth));
+    }
+
+    public static void functionTest(XTree xTree, Predicate<XTree> checker) {
+        if(checker.test(xTree)) {
+            System.out.println(xTree.returnAllTreeInfo());
+        }
     }
 
 }
