@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 public class Streams {
     public static void main(String[] args) {
 
+        // // TODO: 1/5/21 Use .get() if an optional is returned
         // // TODO: 1/2/21 Create a HashMap using Streams
 
         String[] arr = {"this", "is", "a", "string", "is", "a"};
@@ -54,6 +55,9 @@ public class Streams {
               .filter(e -> e > 2)
                 .findFirst()
                 .orElse(null));
+
+
+
 
     }
 

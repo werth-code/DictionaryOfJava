@@ -31,5 +31,10 @@ public class RegEx {
         String data3 = data.replaceAll("\\W", "");
         System.out.println(data3);
 
+        // TODO: 1/5/21 Split
+
+        String str = "this is a string";
+        String[] split = str.split(" ");
+        System.out.println(Arrays.toString(split));
     }
 }

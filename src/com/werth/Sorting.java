@@ -1,9 +1,6 @@
 package com.werth;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Sorting {
 
@@ -40,5 +37,24 @@ public class Sorting {
                 .sorted(compareLength)
                 .mapToInt(String::length)
                 .forEach(System.out::println);
+
+
+        // TODO: 1/5/21
+
+        ArrayList<XTree> xForest = XTreeActions.createSetOfTrees(1, 1, "Evergreen", true);
+        xForest.add(new XTree(1, "Apple", true));
+        xForest.add(new XTree(1, "Pear", true));
+        xForest.add(new XTree(1, "Walnut", true));
+        xForest.add(new XTree(1, "Chestnut", true));
+        xForest.add(new XTree(1, "Cherry", true));
+        xForest.add(new XTree(1, "Maple", true));
+        xForest.add(new XTree(1, "Dogwood", true));
+
+        //Here you can sort with Comparator.comparing and pass in something to sort by.
+        xForest.sort(Comparator.comparing(XTree::getTreeType));
+        xForest.forEach(tree-> System.out.println(tree.getTreeType()));
+
+
+
     }
 }
