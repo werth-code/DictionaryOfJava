@@ -16,6 +16,9 @@ public class Sorting {
         System.out.println(Arrays.toString(str));
         System.out.println(Arrays.toString(ints));
 
+        // based on a method reference to length...
+        Arrays.sort(str, Comparator.comparing(String::length));
+        System.out.println(Arrays.toString(str));
 
         // TODO: 1/4/21 Sorting using Comparator
 
